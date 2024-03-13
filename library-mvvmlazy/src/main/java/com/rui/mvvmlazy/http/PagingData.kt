@@ -8,10 +8,8 @@ package com.rui.mvvmlazy.http
  * *******************************
  */
 class PagingData<T> {
-    var records: MutableList<T>? = null
+    var list: MutableList<T>? = null
     var total = 0
     var current = 0
-    var size = 0
-    var searchCount: String? = null
-    var pages = 0
+
 }

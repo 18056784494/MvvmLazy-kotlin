@@ -6,10 +6,11 @@ import com.rui.demo.data.bean.JokeInfo
 import com.rui.demo.data.repository
 import com.rui.mvvmlazy.base.BaseViewModel
 import com.rui.mvvmlazy.ext.request
+import com.rui.mvvmlazy.http.PagingData
 import com.rui.mvvmlazy.state.ResultState
 
 class NetWorkViewModel : BaseViewModel() {
-    var jokeInfo = MutableLiveData<ResultState<List<JokeInfo>>>()
+    var jokeInfo = MutableLiveData<ResultState<PagingData<JokeInfo>>>()
     var netDataStr = MutableLiveData<String>()
     var clickCommand1: () -> Unit = {
         getNetworkData1()
@@ -22,7 +23,7 @@ class NetWorkViewModel : BaseViewModel() {
      * 在viewModel回调处理结果
      */
     private fun getNetworkData1() {
-        request({ repository.getJoke(1, 10, "video") }, {
+        request({ repository.getJoke(1, 10) }, {
             netDataStr.value = Gson().toJson(it)
         }, {
 
@@ -34,7 +35,7 @@ class NetWorkViewModel : BaseViewModel() {
      */
     private fun getNetworkData2() {
         request(
-            { repository.getJoke(1, 10, "video") },
+            { repository.getJoke(1, 10) },
             jokeInfo,
             isShowDialog = true,
             loadingMessage = "加载中,请稍后.."

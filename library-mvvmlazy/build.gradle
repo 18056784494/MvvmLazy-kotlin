@@ -1,8 +1,11 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    namespace 'com.rui.mvvmlazy'
+    compileSdk rootProject.ext.android.compileSdkVersion
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
@@ -16,6 +19,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget =JavaVersion.VERSION_17
+    }
 }
 
 dependencies {
@@ -26,16 +36,16 @@ dependencies {
 // kotlin扩展（可选）
     api 'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2'
     //通用标题栏
-    api 'com.github.getActivity:TitleBar:8.6'
+    api 'com.github.getActivity:TitleBar:10.5'
     //万能分割线
-    api 'com.github.fondesa:recycler-view-divider:3.5.0'
+    api 'com.github.fondesa:recycler-view-divider:3.6.0'
     // 上拉加载，下拉刷新
-    api 'io.github.scwang90:refresh-layout-kernel:2.0.5'      //核心必须依赖
-    api 'io.github.scwang90:refresh-header-classics:2.0.5'    //经典刷新头
+    api 'io.github.scwang90:refresh-layout-kernel:2.1.0'      //核心必须依赖
+    api 'io.github.scwang90:refresh-header-classics:2.1.0'    //经典刷新头
     api "org.jetbrains.anko:anko:0.10.8"
     //dialog框架
-    api 'com.github.li-xiaojun:XPopup:2.8.12'
-    api 'com.github.li-xiaojun:XPopupExt:0.0.7'
+    api 'com.github.li-xiaojun:XPopup:2.10.0'
+    api 'com.github.li-xiaojun:XPopupExt:1.0.1'
     api rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
     //android_x
     api rootProject.ext.android_x["multidex"]
@@ -59,7 +69,8 @@ dependencies {
     //coil图片加载库
     api rootProject.ext.dependencies["coil"]
     //Google LiveData和ViewModel组件
-    api rootProject.ext.android_x["lifecycle-extensions"]
+    api rootProject.ext.android_x["lifecycle-viewmodel"]
+    api rootProject.ext.android_x["lifecycle-livedata"]
     kapt rootProject.ext.android_x["lifecycle-compiler"]
 
 }

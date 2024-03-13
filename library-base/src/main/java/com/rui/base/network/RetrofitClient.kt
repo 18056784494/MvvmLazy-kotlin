@@ -1,7 +1,6 @@
 package com.rui.base.network
 
 import android.text.TextUtils
-import com.rui.base.BuildConfig
 import com.rui.base.utils.Constant
 import com.rui.mvvmlazy.base.appContext
 import com.rui.mvvmlazy.http.cookie.CookieJarImpl
@@ -10,6 +9,7 @@ import com.rui.mvvmlazy.http.interceptor.BaseInterceptor
 import com.rui.mvvmlazy.http.interceptor.CacheInterceptor
 import com.rui.mvvmlazy.http.interceptor.logging.Level
 import com.rui.mvvmlazy.http.interceptor.logging.LoggingInterceptor
+import com.rui.mvvmlazy.utils.app.ProcessUtils
 import com.rui.mvvmlazy.utils.common.KLog
 import okhttp3.Cache
 import okhttp3.ConnectionPool
@@ -87,7 +87,7 @@ class RetrofitClient(
             .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
             .addInterceptor(
                 LoggingInterceptor.Builder() //构建者模式
-                    .loggable(BuildConfig.DEBUG) //是否开启日志打印
+                    .loggable(ProcessUtils.isApkInDebug()) //是否开启日志打印
                     .setLevel(Level.BASIC) //打印的等级
                     .log(INFO) // 打印类型
                     .request("Request") // request的Tag

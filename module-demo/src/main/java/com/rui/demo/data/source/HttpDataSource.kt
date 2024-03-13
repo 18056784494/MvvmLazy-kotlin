@@ -1,7 +1,9 @@
 package com.rui.demo.data.source
 
 import com.rui.base.entity.ApiResponse
+import com.rui.base.entity.ApiResponseTest
 import com.rui.demo.data.bean.JokeInfo
+import com.rui.mvvmlazy.http.PagingData
 import retrofit2.http.Query
 
 /**
@@ -10,7 +12,9 @@ import retrofit2.http.Query
 interface HttpDataSource {
     suspend  fun getJoke(
         @Query("page") page: Int,
-        @Query("count") count: Int,
-        @Query("type") type: String
-    ): ApiResponse<List<JokeInfo>>
+        @Query("size") size: Int
+    ): ApiResponse<PagingData<JokeInfo>>
+    suspend  fun testApi(
+        @Query("q") page: String
+    ):ApiResponseTest<Map<String,String>>
 }

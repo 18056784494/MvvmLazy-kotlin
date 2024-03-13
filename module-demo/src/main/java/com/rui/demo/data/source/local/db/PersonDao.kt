@@ -9,13 +9,13 @@ import kotlin.jvm.Synchronized
 @Dao // Database access object
 interface PersonDao {
     @Insert
-    fun insertWords(vararg people: Person?)
+    fun insertWords(vararg people: Person)
 
     @Update
-    fun updateWords(vararg people: Person?)
+    fun updateWords(vararg people: Person)
 
     @Delete
-    fun deleteWords(vararg people: Person?)
+    fun deleteWords(vararg people: Person)
 
     @Query("DELETE FROM Person")
     fun deleteAllWords()

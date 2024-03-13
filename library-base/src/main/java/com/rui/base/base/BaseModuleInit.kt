@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.startup.Initializer
 import com.alibaba.android.arouter.launcher.ARouter
-import com.rui.base.BuildConfig
+import com.rui.mvvmlazy.utils.app.ProcessUtils
 import com.rui.mvvmlazy.utils.common.KLog
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
@@ -38,7 +38,7 @@ class BaseModuleInit : Initializer<Unit> {
         //开启打印日志
         KLog.init(true)
         //初始化阿里路由框架
-        if (BuildConfig.DEBUG) {
+        if (ProcessUtils.isApkInDebug()) {
             ARouter.openLog() // 打印日志
             ARouter.openDebug() // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         }

@@ -473,7 +473,7 @@ class ConvertUtils private constructor() {
         fun bitmap2Bytes(bitmap: Bitmap?, format: CompressFormat?): ByteArray? {
             if (bitmap == null) return null
             val baos = ByteArrayOutputStream()
-            bitmap.compress(format, 100, baos)
+            bitmap.compress(format!!, 100, baos)
             return baos.toByteArray()
         }
 

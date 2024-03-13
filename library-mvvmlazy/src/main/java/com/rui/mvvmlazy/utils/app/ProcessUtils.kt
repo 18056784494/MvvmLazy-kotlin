@@ -24,6 +24,7 @@ import android.app.usage.UsageStats
 import android.app.usage.UsageStatsManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Process
@@ -32,7 +33,9 @@ import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import com.rui.mvvmlazy.base.appContext
 import com.rui.mvvmlazy.utils.common.KLog
-import java.util.*
+import java.util.Arrays
+import java.util.Collections
+
 
 /**
  * <pre>
@@ -43,6 +46,15 @@ import java.util.*
  */
 class ProcessUtils private constructor() {
     companion object {
+        //判断当前应用是否是debug状态
+        fun isApkInDebug(): Boolean {
+            return try {
+                val info = appContext.applicationInfo
+                info.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
+            } catch (e: java.lang.Exception) {
+                false
+            }
+        }
         /**
          * 获取前台线程包名
          *

@@ -1,8 +1,12 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+plugins {
+    id 'com.android.application'
+    id("org.jetbrains.kotlin.android")
+    id 'kotlin-kapt'
+    id 'com.google.devtools.ksp'
+}
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    namespace 'com.rui.myapp'
+    compileSdk rootProject.ext.android.compileSdkVersion
     defaultConfig {
         applicationId rootProject.ext.android.applicationId
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -66,14 +70,19 @@ android {
         dataBinding = true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
+    kotlinOptions {
+        jvmTarget =JavaVersion.VERSION_17
+    }
+
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
         }
     }
+
 }
 
 kapt {
@@ -93,9 +102,9 @@ dependencies {
         implementation project(':module-sign')
         implementation project(':module-demo')
     }
-    testImplementation 'junit:junit:4.13.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
 configurations.all() {
     Configuration configuration ->

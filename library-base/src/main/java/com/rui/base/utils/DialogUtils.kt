@@ -290,8 +290,8 @@ object DialogUtils {
      */
     @JvmStatic
     fun showNormalListDialog(
-        list: ArrayList<String?>?,
-        commonPickerListener: CommonPickerListener?
+        list: ArrayList<String?>,
+        commonPickerListener: CommonPickerListener
     ) {
         val popup = CommonPickerPopup(context!!)
         popup.setPickerData(list)

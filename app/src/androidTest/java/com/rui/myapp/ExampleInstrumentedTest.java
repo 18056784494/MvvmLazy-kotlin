@@ -1,4 +1,4 @@
-package com.rui.mvvmlazy;
+package com.rui.myapp;
 
 import android.content.Context;
 

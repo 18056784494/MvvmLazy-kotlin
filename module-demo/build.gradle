@@ -1,7 +1,8 @@
+plugins {
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
 apply from: "../module.build.gradle"
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-
 android {
 
     buildFeatures {
@@ -10,11 +11,12 @@ android {
     defaultConfig {
         //如果是独立模块，则使用当前组件的包名
         if (isBuildModule.toBoolean()) {
-            applicationId "com.rui.test"
+            applicationId "com.rui.demo"
         }
     }
     //统一资源前缀，规范资源引用
     resourcePrefix "test_"
+    namespace 'com.rui.demo'
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']

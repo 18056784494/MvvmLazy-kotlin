@@ -124,7 +124,7 @@ class TestFragment : BaseVmDbFragment<TestViewModel,TestFragmentHomeBinding >() 
      * 请求相机权限
      */
     private fun requestCameraPermissions() {
-        PermissionX.init(activity)
+        PermissionX.init(requireActivity())
             .permissions(
                 Manifest.permission.READ_CONTACTS,
                 Manifest.permission.CAMERA,

@@ -209,12 +209,10 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity(), IBaseVi
         if (mTitleBar != null) {
             initTitleBar(mTitleBar)
             mTitleBar!!.setOnTitleBarListener(object : OnTitleBarListener {
-                override fun onLeftClick(view: View) {
+                override fun onLeftClick(titleBar: TitleBar?) {
                     onBackPressed()
                 }
 
-                override fun onTitleClick(view: View) {}
-                override fun onRightClick(view: View) {}
             })
         }
         // 初始化沉浸式状态栏

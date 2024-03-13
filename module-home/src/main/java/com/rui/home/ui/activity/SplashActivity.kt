@@ -1,6 +1,7 @@
 package com.rui.home.ui.activity
 
 import android.os.Bundle
+import androidx.databinding.DataBindingUtil
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
 import com.rui.home.BR
@@ -13,7 +14,6 @@ class SplashActivity : BaseVmDbActivity<SplashViewModel, HomeActivitySplashBindi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
-
     override fun initContentView(): Int {
         return R.layout.home_activity_splash
     }

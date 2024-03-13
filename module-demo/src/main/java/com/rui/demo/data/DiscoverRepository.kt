@@ -1,8 +1,8 @@
 package com.rui.demo.data
 
-import android.os.Looper
 import androidx.lifecycle.LiveData
 import com.rui.base.entity.ApiResponse
+import com.rui.base.entity.ApiResponseTest
 import com.rui.base.network.RetrofitClient
 import com.rui.demo.data.bean.JokeInfo
 import com.rui.demo.data.source.HttpDataSource
@@ -12,6 +12,7 @@ import com.rui.demo.data.source.http.service.HomeApiService
 import com.rui.demo.data.source.local.LocalDataSourceImpl
 import com.rui.demo.data.source.local.db.Person
 import com.rui.mvvmlazy.base.BaseModel
+import com.rui.mvvmlazy.http.PagingData
 
 /**
  * ******************************
@@ -58,9 +59,12 @@ class DiscoverRepository : BaseModel(), HttpDataSource, LocalDataSource {
 
     override suspend fun getJoke(
         page: Int,
-        count: Int,
-        type: String
-    ): ApiResponse<List<JokeInfo>> {
-        return mHttpDataSource.getJoke(page, count, type)
+        size: Int
+    ): ApiResponse<PagingData<JokeInfo>> {
+        return mHttpDataSource.getJoke(page, size)
+    }
+
+    override suspend fun testApi(page: String): ApiResponseTest<Map<String, String>> {
+        return mHttpDataSource.testApi(page)
     }
 }

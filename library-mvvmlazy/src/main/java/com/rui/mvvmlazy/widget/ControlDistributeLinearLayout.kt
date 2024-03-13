@@ -6,7 +6,7 @@ import android.widget.LinearLayout
 import android.view.MotionEvent
 import android.content.res.TypedArray
 import android.util.AttributeSet
-import me.rui.mvvmlazy.R
+import com.rui.mvvmlazy.R
 
 /**
  * Created by zjr on 2020/3/16.

@@ -6,7 +6,7 @@ if (isBuildModule.toBoolean()) {
     apply plugin: 'com.android.library'
 }
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    compileSdk rootProject.ext.android.compileSdkVersion
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
@@ -51,8 +51,11 @@ android {
         dataBinding = true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget ='17'
     }
 }
 

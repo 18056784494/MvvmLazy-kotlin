@@ -17,17 +17,20 @@
         android:paddingHorizontal="@dimen/dp6"
         app:background_normal="@color/white"
         app:corner_radius="@dimen/dp5"
-        android:hint="评论" />
+        android:hint="Write your message" />
+
 
     <com.ruffian.library.widget.RTextView
         android:id="@+id/btn_finish"
-        android:text="发送"
-        android:textColor="@color/white"
-        android:textSize="@dimen/sp12"
-        app:background_normal="@color/apptheme"
-        app:corner_radius="@dimen/dp5"
-        android:gravity="center"
-        android:layout_marginLeft="@dimen/dp14"
-        android:layout_width="@dimen/dp60"
-        android:layout_height="@dimen/dp34" />
+        android:layout_height="@dimen/dp36"
+        android:layout_width="@dimen/dp36"
+
+        android:textColor="@android:color/black"
+        app:background_normal="#1FD07B"
+        android:padding="@dimen/dp10"
+        app:icon_height="18dp"
+        app:icon_width="18dp"
+        app:icon_src_normal="@drawable/demo_arr_right"
+        app:corner_radius="10dp"
+        android:layout_marginStart="10dp"/>
 </LinearLayout>

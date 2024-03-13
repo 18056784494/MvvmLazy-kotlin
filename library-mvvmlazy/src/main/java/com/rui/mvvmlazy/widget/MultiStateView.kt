@@ -14,7 +14,7 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.annotation.Nullable
-import me.rui.mvvmlazy.R
+import com.rui.mvvmlazy.R
 
 /**
  * 多状态布局

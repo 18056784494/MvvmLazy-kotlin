@@ -7,6 +7,6 @@ package com.rui.demo.data.bean
 
  */
 
-class JokeInfo(var title: String?, var url: String?) {
+class MsgInfo(var title: String?, var type: Int?) {
 
 }

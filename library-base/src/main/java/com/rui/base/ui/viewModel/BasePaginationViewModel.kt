@@ -108,16 +108,16 @@ abstract class BasePaginationViewModel<T> :
             ListType.WITH_PAGING_INFO ->
                 request({ getHttpRequestWithPagingData(page) }, {
                     if (page == 1) {
-                        if (it.records!!.isNotEmpty()) {
-                            mAdapter!!.setNewInstance(it.records)
+                        if (it.list!!.isNotEmpty()) {
+                            mAdapter!!.setNewInstance(it.list)
                             viewState.setValue(ViewState.CONTENT)
                         } else {
                             viewState.setValue(ViewState.EMPTY)
                         }
                     } else {
-                        mAdapter!!.addData(it.records!!)
+                        mAdapter!!.addData(it.list!!)
                     }
-                    if (it.pages == pageSize) {
+                    if (it.list?.size == pageSize) {
                         smartRefreshState.value = SmartRefreshState.LOAD_FINISH
                         pageIndex++
                     } else {

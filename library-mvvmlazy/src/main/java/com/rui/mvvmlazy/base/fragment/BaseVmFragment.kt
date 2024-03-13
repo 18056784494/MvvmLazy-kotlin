@@ -50,12 +50,9 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment(), IBaseView {
         if (mTitleBar != null) {
             initTitleBar(mTitleBar)
             mTitleBar!!.setOnTitleBarListener(object : OnTitleBarListener {
-                override fun onLeftClick(view: View) {
+                override fun onLeftClick(titleBar: TitleBar?) {
                     requireActivity().onBackPressed()
                 }
-
-                override fun onTitleClick(view: View) {}
-                override fun onRightClick(view: View) {}
             })
         }
         // 初始化沉浸式状态栏

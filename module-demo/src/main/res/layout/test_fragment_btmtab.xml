@@ -31,14 +31,14 @@
         <com.angcyo.tablayout.DslTabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dp80"
             android:background="@color/white"
             android:paddingTop="@dimen/dp5"
             android:paddingBottom="@dimen/dp5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:tab_deselect_color="@color/text_minor"
             app:tab_item_auto_equ_width="true"
-            app:tab_select_color="@color/black">
+            app:tab_select_color="@color/red">
 
             <com.ruffian.library.widget.RTextView
                 style="@style/TabCommonItemStyle"

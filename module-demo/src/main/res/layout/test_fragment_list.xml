@@ -73,7 +73,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 bindAdapter="@{viewModel.staggeredAdapter}"
                 layoutManager="@{LayoutManagers.staggeredGrid(3,LayoutManagers.VERTICAL)}"
-                lineManager="@{LineManagers.staggeredDivider(@color/divider,10)}"
+                lineManager="@{LineManagers.staggeredDivider(@color/divider,0)}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="@{viewModel.type==3?View.VISIBLE:View.GONE}" />

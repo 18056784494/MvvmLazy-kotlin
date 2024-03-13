@@ -53,7 +53,7 @@ object ImageUtils {
      * @param format 格式
      * @return 字节数组
      */
-    fun bitmap2Bytes(bitmap: Bitmap?, format: CompressFormat?): ByteArray? {
+    fun bitmap2Bytes(bitmap: Bitmap?, format: CompressFormat): ByteArray? {
         if (bitmap == null) return null
         val baos = ByteArrayOutputStream()
         bitmap.compress(format, 100, baos)
@@ -105,7 +105,7 @@ object ImageUtils {
      * @param format   格式
      * @return 字节数组
      */
-    fun drawable2Bytes(drawable: Drawable?, format: CompressFormat?): ByteArray? {
+    fun drawable2Bytes(drawable: Drawable?, format: CompressFormat): ByteArray? {
         return if (drawable == null) null else bitmap2Bytes(drawable2Bitmap(drawable), format)
     }
 
@@ -1011,38 +1011,38 @@ object ImageUtils {
      * @param radius 模糊半径
      * @return 模糊后的图片
      */
-    @JvmOverloads
-    fun fastBlur(
-        src: Bitmap,
-        @FloatRange(from = 0.0, to = 1.0, fromInclusive = false) scale: Float,
-        @FloatRange(from = 0.0, to = 25.0, fromInclusive = false) radius: Float,
-        recycle: Boolean = false
-    ): Bitmap? {
-        if (isEmptyBitmap(src)) return null
-        val width = src.width
-        val height = src.height
-        val matrix = Matrix()
-        matrix.setScale(scale, scale)
-        var scaleBitmap = Bitmap.createBitmap(src, 0, 0, src.width, src.height, matrix, true)
-        val paint = Paint(Paint.FILTER_BITMAP_FLAG or Paint.ANTI_ALIAS_FLAG)
-        val canvas = Canvas()
-        val filter = PorterDuffColorFilter(
-            Color.TRANSPARENT, PorterDuff.Mode.SRC_ATOP
-        )
-        paint.colorFilter = filter
-        canvas.scale(scale, scale)
-        canvas.drawBitmap(scaleBitmap!!, 0f, 0f, paint)
-        scaleBitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            renderScriptBlur(scaleBitmap, radius, recycle)
-        } else {
-            stackBlur(scaleBitmap, radius.toInt(), recycle)
-        }
-        if (scale == 1f) return scaleBitmap
-        val ret = Bitmap.createScaledBitmap(scaleBitmap!!, width, height, true)
-        if (scaleBitmap != null && !scaleBitmap.isRecycled) scaleBitmap.recycle()
-        if (recycle && !src.isRecycled) src.recycle()
-        return ret
-    }
+//    @JvmOverloads
+//    fun fastBlur(
+//        src: Bitmap,
+//        @FloatRange(from = 0.0, to = 1.0, fromInclusive = false) scale: Float,
+//        @FloatRange(from = 0.0, to = 25.0, fromInclusive = false) radius: Float,
+//        recycle: Boolean = false
+//    ): Bitmap? {
+//        if (isEmptyBitmap(src)) return null
+//        val width = src.width
+//        val height = src.height
+//        val matrix = Matrix()
+//        matrix.setScale(scale, scale)
+//        var scaleBitmap = Bitmap.createBitmap(src, 0, 0, src.width, src.height, matrix, true)
+//        val paint = Paint(Paint.FILTER_BITMAP_FLAG or Paint.ANTI_ALIAS_FLAG)
+//        val canvas = Canvas()
+//        val filter = PorterDuffColorFilter(
+//            Color.TRANSPARENT, PorterDuff.Mode.SRC_ATOP
+//        )
+//        paint.colorFilter = filter
+//        canvas.scale(scale, scale)
+//        canvas.drawBitmap(scaleBitmap!!, 0f, 0f, paint)
+//        scaleBitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) ({
+//            renderScriptBlur(scaleBitmap, radius, recycle)
+//        })!! else ({
+//            stackBlur(scaleBitmap, radius.toInt(), recycle)
+//        })!!
+//        if (scale == 1f) return scaleBitmap
+//        val ret = Bitmap.createScaledBitmap(scaleBitmap, width, height, true)
+//        if (scaleBitmap != null && !scaleBitmap.isRecycled) scaleBitmap.recycle()
+//        if (recycle && !src.isRecycled) src.recycle()
+//        return ret
+//    }
 
     /**
      * renderScript模糊图片
@@ -1431,7 +1431,7 @@ object ImageUtils {
      * @param format   格式
      * @return `true`: 成功<br></br>`false`: 失败
      */
-    fun save(src: Bitmap, filePath: String, format: CompressFormat?): Boolean {
+    fun save(src: Bitmap, filePath: String, format: CompressFormat): Boolean {
         return save(src, getFileByPath(filePath), format, false)
     }
 
@@ -1444,7 +1444,7 @@ object ImageUtils {
      * @param recycle  是否回收
      * @return `true`: 成功<br></br>`false`: 失败
      */
-    fun save(src: Bitmap, filePath: String, format: CompressFormat?, recycle: Boolean): Boolean {
+    fun save(src: Bitmap, filePath: String, format: CompressFormat, recycle: Boolean): Boolean {
         return save(src, getFileByPath(filePath), format, recycle)
     }
     /**
@@ -1465,7 +1465,7 @@ object ImageUtils {
      * @return `true`: 成功<br></br>`false`: 失败
      */
     @JvmOverloads
-    fun save(src: Bitmap, file: File?, format: CompressFormat?, recycle: Boolean = false): Boolean {
+    fun save(src: Bitmap, file: File?, format: CompressFormat, recycle: Boolean = false): Boolean {
         if (isEmptyBitmap(src) || !createFileByDeleteOldFile(file)) return false
         var os: OutputStream? = null
         var ret = false

@@ -9,6 +9,7 @@ import com.rui.demo.data.bean.JokeInfo
 import com.rui.demo.data.repository
 import com.rui.demo.databinding.TestLayoutItemJokeBinding
 import com.rui.mvvmlazy.binding.viewadapter.recyclerview.DataBindingAdapter
+import com.rui.mvvmlazy.http.PagingData
 
 class PaginationViewModel : BasePaginationViewModel<JokeInfo>() {
     private val myAdapter by lazy {
@@ -34,9 +35,9 @@ class PaginationViewModel : BasePaginationViewModel<JokeInfo>() {
      * @return
      */
     override val dateListType: ListType
-        get() = ListType.NO_PAGING_INFO
+        get() = ListType.WITH_PAGING_INFO
 
-    override suspend fun getHttpRequestNoPagingData(pageIndex: Int): ApiResponse<List<JokeInfo>> {
-        return repository.getJoke(pageIndex, 10, "video")
+    override suspend fun getHttpRequestWithPagingData(pageIndex: Int): ApiResponse<PagingData<JokeInfo>> {
+        return repository.getJoke(pageIndex, 10 )
     }
 }

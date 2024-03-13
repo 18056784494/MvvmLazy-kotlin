@@ -6,7 +6,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.rui.mvvmlazy.base.fragment.BaseVmDbFragment
-import me.rui.mvvmlazy.R
+import com.rui.mvvmlazy.R
 import java.lang.ref.WeakReference
 
 /**

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lxj.xpopupext.listener.CityPickerListener
+import com.lxj.xpopupext.listener.CommonPickerListener
 import com.lxj.xpopupext.listener.TimePickerListener
 import com.lxj.xpopupext.popup.TimePickerPopup
 import com.rui.base.utils.DialogUtils.cancelLoading
@@ -44,7 +45,7 @@ class DialogFragment : BaseVmDbFragment<DialogViewModel,TestFragmentDialogBindin
 
     override fun initData() {
         super.initData()
-        binding!!.presenter = Presenter()
+        binding.presenter = Presenter()
     }
 
     inner class Presenter {
@@ -115,6 +116,9 @@ class DialogFragment : BaseVmDbFragment<DialogViewModel,TestFragmentDialogBindin
                     //点击确认时间
                     ToastUtils.showShort("选择的时间：" + date.toLocaleString())
                 }
+
+                override fun onCancel() {
+                }
             })
         }
 
@@ -129,6 +133,9 @@ class DialogFragment : BaseVmDbFragment<DialogViewModel,TestFragmentDialogBindin
                     Log.e("tag", "$province - $city - $area")
                     ToastUtils.showShort("$province - $city - $area")
                 }
+
+                override fun onCancel() {
+                }
             })
         }
 
@@ -139,7 +146,15 @@ class DialogFragment : BaseVmDbFragment<DialogViewModel,TestFragmentDialogBindin
             list.add("小羊")
             list.add("小鸡")
             list.add("小鸭")
-            showNormalListDialog(list) { index, data -> ToastUtils.showShort("选中的是 $data") }
+            showNormalListDialog(list,object :CommonPickerListener{
+                override fun onItemSelected(index: Int, data: String) {
+                    ToastUtils.showShort("选中的是 $data")
+                }
+
+                override fun onCancel() {
+                    TODO("Not yet implemented")
+                }
+            })
         }
     }
 }

@@ -31,12 +31,12 @@ class NetWorkFragment : BaseVmDbFragment<NetWorkViewModel,TestFragmentNetWorkBin
 
     override fun initViewObservable() {
         super.initViewObservable()
-        viewModel.jokeInfo.observe(this, { resultState ->
+        viewModel.jokeInfo.observe(this) { resultState ->
             parseState(resultState, {
                 viewModel.netDataStr.value = Gson().toJson(it)
             }, {
                 ToastUtils.showShort(it.errorMsg)
             })
-        })
+        }
     }
 }
