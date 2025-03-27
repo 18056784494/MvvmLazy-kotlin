@@ -68,6 +68,9 @@ ext {
 
 
     ]
+    deps = [
+            'fastjson'                     : 'com.alibaba:fastjson:1.2.73',
+            'MMKV'                         : 'com.tencent:mmkv-static:1.2.5']
 }
 
 
